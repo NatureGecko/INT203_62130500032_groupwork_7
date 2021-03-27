@@ -8,62 +8,66 @@
 
       <div class="container">
         <div class="survey-container">
-          <form action="">
+          <form @submit.prevent="submitThis">
             <div>
               <h2 class="heading">
                 How was your Vue.js learning experience?
               </h2>
               <label class="label" for="name">Your Name</label>
-              <input class="input" id="name" type="text" />
+              <input class="input" id="name" type="text" v-model.trim="getNameFromForm" />
+              <h1 v-show="isNameInvalid" class="bg-red-100 text-red-800 font-bold">Come back! You forgot your name!</h1>
             </div>
 
-            <div class="text-xl bg-laxury-bluedark">
+            <div class="text-xl bg-laxury-bluedark bg-opacity-25 px-5">
               <h2 class="heading">My learning experience was ...</h2>
 
               <div>
-                <input type="radio" name="rating" id="rating-poor" />
+                <input type="radio" name="rating" id="rating-terrible" value="terrible" v-model="getUserRating" />
                 <label class="label" for="rating-poor">I'm died</label>
               </div>
 
               <div>
-                <input type="radio" name="rating" id="rating-poor" />
+                <input type="radio" name="rating" id="rating-bad" value="bad" v-model="getUserRating" />
                 <label class="label" for="rating-poor">My nightmare</label>
               </div>
 
               <div>
-                <input type="radio" name="rating" id="rating-poor" />
+                <input type="radio" name="rating" id="rating-poor" value="poor" v-model="getUserRating" />
                 <label class="label" for="rating-poor">Poor</label>
               </div>
 
               <div>
-                <input type="radio" name="rating" id="rating-avg" />
+                <input type="radio" name="rating" id="rating-avg" value="average" v-model="getUserRating" />
                 <label class="label" for="rating-avg">Average</label>
               </div>
 
               <div>
-                <input type="radio" name="rating" id="rating-great" />
+                <input type="radio" name="rating" id="rating-great" value="great" v-model="getUserRating" />
                 <label class="label" for="rating-great">Great</label>
               </div>
 
               <div>
-                <input type="radio" name="rating" id="rating-great" />
+                <input type="radio" name="rating" id="rating-exellent" value="exellent" v-model="getUserRating" />
                 <label class="label" for="rating-great">Mastered</label>
               </div>
 
               <div>
-                <input type="radio" name="rating" id="rating-great" />
+                <input type="radio" name="rating" id="rating-ascended" value="ascended" v-model="getUserRating" />
                 <label class="label" for="rating-great">Ascended</label>
               </div>
 
               <div>
-                <input type="radio" name="rating" id="rating-great" />
+                <input type="radio" name="rating" id="rating-god" value="god" v-model="getUserRating" />
                 <label class="label" for="rating-great">I'm the god!</label>
               </div>
+
+              <h1 v-show="isUserRatingInvalid" class="bg-red-100 text-red-800 font-bold">You forgot to tell me what is your feeling! TwT</h1>
 
             </div>
             <button class="btn">
               Submit
             </button>
+             <h1 v-show="isAllThere" class="bg-green-100 text-green-800 font-bold">You are good to go.</h1>
           </form>
         </div>
       </div>
@@ -82,13 +86,23 @@ export default {
   data(){
     return{
       getNameFromForm: '',
-      getUserRating: null,
+      getUserRating: '',
       isNameInvalid: false,
-      isUserRatingInvalid: false
+      isUserRatingInvalid: false,
+      isAllThere: false
     }
   },
   methods:{
+    submitThis(){
+        this.isNameInvalid = this.getNameFromForm === '' ? true : false;
+        this.isUserRatingInvalid = this.getUserRating === '' ? true : false;
 
+        if(this.isNameInvalid  &&  this.isUserRatingInvalid){
+          this.isAllThere = false;
+        } else {
+          this.isAllThere = true;
+        }
+    }
   }
 }
 </script>
