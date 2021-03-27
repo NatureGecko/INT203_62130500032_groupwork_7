@@ -81,6 +81,8 @@
              <h1 v-show="isAllThere" class="bg-green-100 text-green-800 font-bold">You are good to go.</h1>
           </form>
 
+          <base-card>
+          </base-card>
           
         </div>
       </div>
@@ -118,14 +120,14 @@ export default {
           this.isAllThere = false;
         }
     },
-    asyncfetchSurveyResult(){
-      constres=awaitfetch('http://localhost:5000/surveyResults')
-      constdata=awaitres.json()
-      returndata
-    },
-    asynccreated(){
-      this.surveyResults=awaitthis.fetchSurveyResult()
-      }
+    async fetchSurveyResult(){
+      const res = await fetch('http://localhost:5000/surveyResults');
+      const data = await res.json();
+      return data;
+    }
+  },
+  async created() {
+    this.surveyResults = await this.fetchSurveyResult()
   }
 }
 </script>
