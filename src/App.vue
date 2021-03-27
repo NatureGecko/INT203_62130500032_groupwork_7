@@ -10,6 +10,7 @@
         <div class="survey-container">
 
           <form @submit.prevent="submitThis">
+            <base-card>
             <div>
               <h2 class="heading">
                 How was your Vue.js learning experience?
@@ -21,7 +22,9 @@
               <h1 v-show="!isNameInvalid" class="bg-red-100 text-red-800 font-bold">Come back! You forgot your name!</h1>
 
             </div>
+            </base-card>
 
+            <base-card>
             <div class="text-xl bg-laxury-bluedark bg-opacity-25 px-5">
               <h2 class="heading">My learning experience was ...</h2>
 
@@ -71,11 +74,14 @@
               <h1 v-show="!isUserRatingInvalid" class="bg-red-100 text-red-800 font-bold">You forgot to tell me what is your feeling! TwT</h1>
 
             </div>
+            </base-card>
             <button class="btn">
               Submit
             </button>
              <h1 v-show="isAllThere" class="bg-green-100 text-green-800 font-bold">You are good to go.</h1>
           </form>
+
+          
         </div>
       </div>
     </div>
@@ -84,11 +90,13 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import BaseCard from './components/BaseCard.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    BaseCard
   },
   data(){
     return{
