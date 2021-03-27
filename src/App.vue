@@ -15,7 +15,7 @@
               </h2>
               <label class="label" for="name">Your Name</label>
               <input class="input" id="name" type="text" v-model.trim="getNameFromForm" />
-              <h1 v-show="isNameInvalid" class="bg-red-100 text-red-800 font-bold">Come back! You forgot your name!</h1>
+              <h1 v-show="!isNameInvalid" class="bg-red-100 text-red-800 font-bold">Come back! You forgot your name!</h1>
             </div>
 
             <div class="text-xl bg-laxury-bluedark bg-opacity-25 px-5">
@@ -61,7 +61,7 @@
                 <label class="label" for="rating-great">I'm the god!</label>
               </div>
 
-              <h1 v-show="isUserRatingInvalid" class="bg-red-100 text-red-800 font-bold">You forgot to tell me what is your feeling! TwT</h1>
+              <h1 v-show="!isUserRatingInvalid" class="bg-red-100 text-red-800 font-bold">You forgot to tell me what is your feeling! TwT</h1>
 
             </div>
             <button class="btn">
@@ -87,20 +87,20 @@ export default {
     return{
       getNameFromForm: '',
       getUserRating: '',
-      isNameInvalid: false,
-      isUserRatingInvalid: false,
+      isNameInvalid: true,
+      isUserRatingInvalid: true,
       isAllThere: false
     }
   },
   methods:{
     submitThis(){
-        this.isNameInvalid = this.getNameFromForm === '' ? true : false;
-        this.isUserRatingInvalid = this.getUserRating === '' ? true : false;
+        this.isNameInvalid = this.getNameFromForm === '' ? false : true;
+        this.isUserRatingInvalid = this.getUserRating === '' ? false : true;
 
         if(this.isNameInvalid  &&  this.isUserRatingInvalid){
-          this.isAllThere = false;
-        } else {
           this.isAllThere = true;
+        } else {
+          this.isAllThere = false;
         }
     }
   }
