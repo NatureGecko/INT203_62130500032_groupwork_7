@@ -25,7 +25,7 @@
             </base-card>
 
             <base-card>
-            <div class="text-xl bg-laxury-bluedark bg-opacity-25 px-5">
+            <div class="text-xl px-5">
               <h2 class="heading">My learning experience was ...</h2>
 
               <div>
