@@ -90,13 +90,11 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import BaseCard from './components/BaseCard.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    BaseCard
+    HelloWorld
   },
   data(){
     return{
