@@ -1,4 +1,5 @@
 <template>
-  <div class="border border-gray-50 rounded-xl shadow p-2 my-1">
-    <slot></slot></div
-></template>
+    <div class="border border-laxury-bluedark bg-laxury-bluedark bg-opacity-25 rounded-xl shadow p-5 my-1">
+        <slot></slot>
+    </div>
+</template>

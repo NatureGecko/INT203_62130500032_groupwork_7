@@ -5,6 +5,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+
+        
         sea: '#0fa9e6',
         fuchsia: colors.fuchsia,
         salmon: {
@@ -14,7 +16,18 @@ module.exports = {
           DEFAULT: '#F7A399', // Vivid Tangerine
           light: '#FBC3BC', // Spanish Pink
           lightest: '#FFE3E0' // Misty Rose
+        },
+        amber:{
+          c600:'#D97706',
+          c800:'#92400E'
+        },
+        laxury:{
+          blue :'#3B71CE',
+          yellowlight: '#EFE692',
+          bluedark:'#13223E'
         }
+
+
       }
     }
   },

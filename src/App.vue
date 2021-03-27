@@ -8,72 +8,80 @@
 
       <div class="container">
         <div class="survey-container">
-          <form @submit.prevent="submitForm">
+
+          <form @submit.prevent="submitThis">
             <base-card>
+            <div>
               <h2 class="heading">
                 How was your Vue.js learning experience?
               </h2>
 
               <label class="label" for="name">Your Name</label>
 
-              <input
-                class="input"
-                :class="{ 'bg-red-50': invalidNameInput }"
-                id="name"
-                type="text"
-                v-model.trim="enteredName"
-                @blur="validateName"
-              />
+              <input class="input" id="name" type="text" v-model.trim="getNameFromForm" />
+              <h1 v-show="!isNameInvalid" class="bg-red-100 text-red-800 font-bold">Come back! You forgot your name!</h1>
 
-              <p v-if="invalidNameInput" class="text-red-500">
-                Please enter your name!
-              </p>
+            </div>
             </base-card>
 
             <base-card>
+            <div class="text-xl px-5">
               <h2 class="heading">My learning experience was ...</h2>
 
               <div>
-                <input
-                  type="radio"
-                  name="rating"
-                  id="rating-poor"
-                  value="poor"
-                  v-model="rating"
-                />
+
+                <input type="radio" name="rating" id="rating-terrible" value="terrible" v-model="getUserRating" />
+                <label class="label" for="rating-poor">I'm died</label>
+              </div>
+
+              <div>
+                <input type="radio" name="rating" id="rating-bad" value="bad" v-model="getUserRating" />
+                <label class="label" for="rating-poor">My nightmare</label>
+              </div>
+
+              <div>
+                <input type="radio" name="rating" id="rating-poor" value="poor" v-model="getUserRating" />
                 <label class="label" for="rating-poor">Poor</label>
               </div>
 
               <div>
-                <input
-                  type="radio"
-                  name="rating"
-                  id="rating-avg"
-                  value="average"
-                  v-model="rating"
-                />
+
+                <input type="radio" name="rating" id="rating-avg" value="average" v-model="getUserRating" />
+
                 <label class="label" for="rating-avg">Average</label>
               </div>
 
               <div>
-                <input
-                  type="radio"
-                  name="rating"
-                  id="rating-great"
-                  value="great"
-                  v-model="rating"
-                />
+                <input type="radio" name="rating" id="rating-great" value="great" v-model="getUserRating" />
                 <label class="label" for="rating-great">Great</label>
               </div>
-              <p v-if="invalidRatingInput" class="text-red-500">
-                Please choose your learning experience!
-              </p>
-            </base-card>
 
+              <div>
+                <input type="radio" name="rating" id="rating-exellent" value="exellent" v-model="getUserRating" />
+                <label class="label" for="rating-great">Mastered</label>
+              </div>
+
+              <div>
+                <input type="radio" name="rating" id="rating-ascended" value="ascended" v-model="getUserRating" />
+                <label class="label" for="rating-great">Ascended</label>
+              </div>
+
+              <div>
+                <input type="radio" name="rating" id="rating-god" value="god" v-model="getUserRating" />
+                <label class="label" for="rating-great">I'm the god!</label>
+              </div>
+
+              <h1 v-show="!isUserRatingInvalid" class="bg-red-100 text-red-800 font-bold">You forgot to tell me what is your feeling! TwT</h1>
+
+            </div>
+            </base-card>
             <button class="btn">
               Submit
             </button>
+             <h1 v-show="isAllThere" class="bg-green-100 text-green-800 font-bold">You are good to go.</h1>
           </form>
+
+          
         </div>
       </div>
     </div>
@@ -88,28 +96,25 @@ export default {
   components: {
     HelloWorld
   },
-  data() {
-    return {
-      enteredName: '',
-      rating: null,
-      invalidNameInput: false,
-      invalidRatingInput: false
+  data(){
+    return{
+      getNameFromForm: '',
+      getUserRating: '',
+      isNameInvalid: true,
+      isUserRatingInvalid: true,
+      isAllThere: false
     }
   },
-  methods: {
-    submitForm() {
-      this.invalidNameInput = this.enteredName === '' ? true : false
-      this.invalidRatingInput = this.rating === null ? true : false
+  methods:{
+    submitThis(){
+        this.isNameInvalid = this.getNameFromForm === '' ? false : true;
+        this.isUserRatingInvalid = this.getUserRating === '' ? false : true;
 
-      console.log(`name value: ${this.enteredName}`)
-      console.log(`rating value: ${this.rating}`)
-      console.log(`invalid name: ${this.invalidNameInput}`)
-      console.log(`invalid rating: ${this.invalidRatingInput}`)
-    },
-
-    validateName() {
-      this.invalidNameInput = this.enteredName === '' ? true : false
-      console.log(`name: ${this.invalidNameInput}`)
+        if(this.isNameInvalid  &&  this.isUserRatingInvalid){
+          this.isAllThere = true;
+        } else {
+          this.isAllThere = false;
+        }
     }
   }
 }
