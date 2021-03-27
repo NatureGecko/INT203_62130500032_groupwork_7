@@ -102,8 +102,10 @@ export default {
       getUserRating: '',
       isNameInvalid: true,
       isUserRatingInvalid: true,
-      isAllThere: false
+      isAllThere: false,
+      surveyResults: []
     }
+    
   },
   methods:{
     submitThis(){
@@ -115,7 +117,15 @@ export default {
         } else {
           this.isAllThere = false;
         }
-    }
+    },
+    asyncfetchSurveyResult(){
+      constres=awaitfetch('http://localhost:5000/surveyResults')
+      constdata=awaitres.json()
+      returndata
+    },
+    asynccreated(){
+      this.surveyResults=awaitthis.fetchSurveyResult()
+      }
   }
 }
 </script>
